@@ -8,7 +8,7 @@ To understand how it works you must check [Google Accounts Authentication and Au
 ##Example Usage
 Check the example App to see it in action. It is pretty simple but you will need to get your CLIENT_ID and CLIENT_SECRET from [Google Api Console](https://code.google.com/apis/console/).
 
-#Titanium code:
+###Titanium code:
 	
 	:::javascript
 	//initialize module
@@ -36,7 +36,7 @@ Check the example App to see it in action. It is pretty simple but you will need
 	});
 
 
-#Titanium demo:
+###Titanium demo:
 ![Demo App][1]
 
 Author: [Miroslav Magda](http://ejci.net)
