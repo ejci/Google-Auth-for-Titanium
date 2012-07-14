@@ -1,7 +1,7 @@
 var GoogleAuth = require('modules/googleAuth');
 var googleAuth = new GoogleAuth({
-	clientId : '603133810021.apps.googleusercontent.com',
-	clientSecret : 'uNUk7OSfK8p26pnuIfDQ5IKV',
+	clientId : 'CLIENT_ID',
+	clientSecret : 'CLIENT_SECRET',
 	propertyName : 'googleToken',
 	scope : ['https://www.googleapis.com/auth/tasks', 'https://www.googleapis.com/auth/tasks.readonly']
 });
