@@ -1,9 +1,11 @@
 var GoogleAuth = require('modules/googleAuth');
 var googleAuth = new GoogleAuth({
-	clientId : 'CLIENT_ID',
-	clientSecret : 'CLIENT_SECRET',
+	clientId : '761394311941.apps.googleusercontent.com',
+	clientSecret : 'KEKKU3--QVk849MHtmAJTToU',
 	propertyName : 'googleToken',
+	quiet: false,
 	scope : ['https://www.googleapis.com/auth/tasks', 'https://www.googleapis.com/auth/tasks.readonly']
+
 });
 
 /*

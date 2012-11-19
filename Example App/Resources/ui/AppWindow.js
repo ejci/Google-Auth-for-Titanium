@@ -18,6 +18,7 @@ function AppWindow(title) {
 
 	logout.addEventListener('click', function() {
 		googleAuth.deAuthorize();
+		//googleAuth.refreshToken();
 		table.setData([]);
 	});
 	sync.addEventListener('click', function() {
@@ -29,33 +30,41 @@ function AppWindow(title) {
 			var xhrList = Ti.Network.createHTTPClient({
 				// function called when the response data is available
 				onload : function(e) {
-					var resp = JSON.parse(this.responseText);
-					for(var i = 0; i < resp.items.length; i++) {
-						//GET DATA FOR LIST
-						var xhrTasks = Ti.Network.createHTTPClient({
-							// function called when the response data is available
-							onload : function(e) {
-								var resp = JSON.parse(this.responseText);
-								for(var j = 0; j < resp.items.length; j++) {
-									if(resp.items[j].title != '') {
-										var row = Titanium.UI.createTableViewRow({
-											title : resp.items[j].title
-										});
-										table.appendRow(row);
+					try {
+						var resp = JSON.parse(this.responseText);
+						for (var i = 0; i < resp.items.length; i++) {
+							//GET DATA FOR LIST
+							var xhrTasks = Ti.Network.createHTTPClient({
+								// function called when the response data is available
+								onload : function(e) {
+									var resp = JSON.parse(this.responseText);
+									for (var j = 0; j < resp.items.length; j++) {
+										if (resp.items[j].title != '') {
+											var row = Titanium.UI.createTableViewRow({
+												title : resp.items[j].title
+											});
+											table.appendRow(row);
+										}
 									}
-								}
-							},
-							// function called when an error occurs, including a timeout
-							onerror : function(e) {
-								Titanium.UI.createAlertDialog({
-									title : 'Error',
-									message : 'Can\'t load tasks for list ' + resp[i].title
-								});
-							},
-							timeout : 5000
+								},
+								// function called when an error occurs, including a timeout
+								onerror : function(e) {
+									Titanium.UI.createAlertDialog({
+										title : 'Error',
+										message : 'Can\'t load tasks for list ' + resp[i].title
+									});
+								},
+								timeout : 5000
+							});
+							xhrTasks.open("GET", 'https://www.googleapis.com/tasks/v1/lists/' + resp.items[i].id + '/tasks?access_token=' + googleAuth.getAccessToken());
+							xhrTasks.send();
+						}
+					} catch(e) {
+						Titanium.UI.createAlertDialog({
+							title : 'Error',
+							message : 'Can\'t load tasks for list' 
 						});
-						xhrTasks.open("GET", 'https://www.googleapis.com/tasks/v1/lists/' + resp.items[i].id + '/tasks?access_token=' + googleAuth.getAccessToken());
-						xhrTasks.send();
+						Ti.API.error('RESPONSE: '+JSON.stringify(e));
 					}
 				},
 				// function called when an error occurs, including a timeout
@@ -64,6 +73,7 @@ function AppWindow(title) {
 						title : 'Error',
 						message : 'Can\'t load tasklists'
 					});
+					Ti.API.error('HTTP: '+JSON.stringify(e));
 				},
 				timeout : 5000
 			});

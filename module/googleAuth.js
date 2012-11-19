@@ -1,6 +1,6 @@
 /*
  * Google account authentfication library / module
- * by Miroslav Magda, blog.ejci.net, 
+ * by Miroslav Magda, blog.ejci.net,
  *
  *
  * Copyright 2012 Miroslav Magda
@@ -15,7 +15,7 @@
  */
 
 var GoogleAuth = function(o) {
-	var _version = '0.3.0';
+	var _version = '0.3.1';
 	o = (o) ? o : {};
 	var _opt = {
 		clientId : (o.clientId) ? o.clientId : null,
@@ -25,38 +25,38 @@ var GoogleAuth = function(o) {
 		scope : (o.scope) ? o.scope : ['https://www.googleapis.com/auth/tasks'],
 		closeTitle : (o.closeTitle) ? o.closeTitle : 'Close',
 		winTitle : (o.winTitle) ? o.winTitle : 'Google Account',
-		errorText : (o.errorText) ? o.errorText : 'Can\'t authorize user!',
+		errorText : (o.errorText) ? o.errorText : 'Can not authorize user!',
 		winColor : (o.winColor) ? o.winColor : '#000',
-		quiet : (o.quiet) ? o.quiet : true
+		quiet : ( typeof (o.quiet) === 'undefined') ? true : o.quiet
 	};
-	//UTILS
 	var log = function() {
 	};
 	log.error = function(t) {
-		if(!_opt.quiet) {
-			Ti.API.error(t);
+		if (!_opt.quiet) {
+			Ti.API.error('' + t);
 		}
 	}
 	log.info = function(t) {
-		if(!_opt.quiet) {
+		if (!_opt.quiet) {
 			Ti.API.info(t);
 		}
 	}
 	log.debug = function(t) {
-		if(!_opt.quiet) {
-			Ti.API.debug(t);
+		if (!_opt.quiet) {
+			Ti.API.debug('' + t);
 		}
 	}
 	log.trace = function(t) {
-		if(!_opt.quiet) {
-			Ti.API.trace(t);
+		if (!_opt.quiet) {
+			Ti.API.trace('' + t);
 		}
-	}
-	log.info('*-----------------------------------*');
+	}//UTILS
+
+	log.info('-------------------------------------');
 	log.info('| Google Account Authentification   |');
 	log.info('| Titanium Module (v.:' + _version + ')        |');
 	log.info('| by Miroslav Magda                 |');
-	log.info('*-----------------------------------*');
+	log.info('-------------------------------------');
 
 	var win;
 
@@ -69,15 +69,14 @@ var GoogleAuth = function(o) {
 	var prop = {};
 	prop = getProps();
 
-	if(prop.expiresIn >= (new Date()).getTime()) {
+	if (prop.expiresIn >= (new Date()).getTime()) {
 		log.info('GoogleAuth: Access code valid');
 		_prop = prop;
-	}/* else {
+	}/*else {
 	 log.info('GoogleAuth: Access code not valid. Refreshing...');
 	 _prop = prop;
 	 refreshToken();
 	 }*/
-
 	function getProps() {
 		var p = {};
 		p.accessToken = Ti.App.Properties.getString(_opt.propertyName + '.accessToken');
@@ -126,7 +125,7 @@ var GoogleAuth = function(o) {
 		webview.addEventListener('load', function(e) {
 			c++;
 			var accessDenied = webview.evalJS('document.getElementById("access_denied").value;');
-			if(accessDenied != '') {
+			if (accessDenied != '') {
 				log.debug('GoogleAuth: Access denied!');
 				Ti.App.Properties.setString(_opt.propertyName + '.accessToken', '');
 				Ti.App.Properties.setString(_opt.propertyName + '.refreshToken', '');
@@ -139,14 +138,14 @@ var GoogleAuth = function(o) {
 				win.close();
 			}
 			var code = webview.evalJS('document.getElementById("code").value;');
-			if(code != '') {
+			if (code != '') {
 				log.debug('GoogleAuth: Access granted!');
 				webview.hide();
 				spinner.show();
 				//log.info('Code: ' + code);
 				getToken(code, cb);
 			}
-			if(c > 10) {
+			if (c > 10) {
 				//some error (to many requests :) )
 				log.debug('GoogleAuth: To many redirects...');
 				win.close();
@@ -160,7 +159,7 @@ var GoogleAuth = function(o) {
 		};
 
 		log.debug('GoogleAuth: User logging out...');
-		if(isAuthorized()) {
+		if (isAuthorized()) {
 			var logoutWin = Ti.UI.createWindow({
 				backgroundColor : 'white',
 				barColor : _opt.winColor,
@@ -248,10 +247,10 @@ var GoogleAuth = function(o) {
 				//authorize();
 
 			},
-			timeout : 5000  /* in milliseconds */
+			timeout : 5000 /* in milliseconds */
 		});
 		// Prepare the connection.
-		xhr.open("POST", 'http://accounts.google.com/o/oauth2/token');
+		xhr.open("POST", _opt.url);
 		xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 		var d = {
 			client_id : _opt.clientId,
@@ -302,7 +301,7 @@ var GoogleAuth = function(o) {
 				});
 				win.close();
 			},
-			timeout : 5000  /* in milliseconds */
+			timeout : 5000 /* in milliseconds */
 		});
 		// Prepare the connection.
 		xhr.open("POST", 'http://accounts.google.com/o/oauth2/token');
@@ -324,7 +323,7 @@ var GoogleAuth = function(o) {
 	function prepareUrl() {
 		//encodeURIComponent(_opt.scope.join('+'))
 		var scope = [];
-		for(var i = 0; i < _opt.scope.length; i++) {
+		for (var i = 0; i < _opt.scope.length; i++) {
 			scope[i] = encodeURIComponent(_opt.scope[i])
 		}
 		var url = _opt.url + '?' + 'approval_prompt=force&scope=' + scope.join('+') + '&' + 'redirect_uri=urn:ietf:wg:oauth:2.0:oob' + '&' + 'response_type=code' + '&' + 'client_id=' + _opt.clientId + '&' + 'btmpl=mobile' + '';
@@ -337,11 +336,10 @@ var GoogleAuth = function(o) {
 		};
 		cbError = (cbError) ? cbError : function() {
 		};
-		log.debug('Properties:');
 		_prop = getProps();
-		log.debug(_prop);
-		if(_prop.accessToken != null && _prop.accessToken != '') {
-			if(_prop.expiresIn < (new Date()).getTime()) {
+		log.debug('Properties: ' + JSON.stringify(_prop));
+		if (_prop.accessToken != null && _prop.accessToken != '') {
+			if (_prop.expiresIn < (new Date()).getTime()) {
 				refreshToken(cbSuccess, cbError);
 			} else {
 				cbSuccess();
