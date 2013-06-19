@@ -41,7 +41,7 @@ If you don't now how to get CLIENT_ID or CLIENT_SECRET check this [guide](http:/
 ![Demo App][1]
 
 Author: [Miroslav Magda](http://ejci.net)
-Version 0.3.1
+Version 0.3.2
 
 ##License
 All code is open source and dual licensed under GPL and MIT. Check the individual licenses for more information.
