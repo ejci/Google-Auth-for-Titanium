@@ -15,7 +15,7 @@
  */
 
 var GoogleAuth = function(o) {
-	var _version = '0.3.1';
+	var _version = '0.3.2';
 	o = (o) ? o : {};
 	var _opt = {
 		clientId : (o.clientId) ? o.clientId : null,
@@ -304,7 +304,7 @@ var GoogleAuth = function(o) {
 			timeout : 5000 /* in milliseconds */
 		});
 		// Prepare the connection.
-		xhr.open("POST", 'http://accounts.google.com/o/oauth2/token');
+		xhr.open("POST", 'https://accounts.google.com/o/oauth2/token');
 		xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 		var d = {
 			code : code,
