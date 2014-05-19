@@ -18,7 +18,8 @@ If you don't now how to get CLIENT_ID or CLIENT_SECRET check this [guide](http:/
 		clientId : 'CLIENT_ID',
 		clientSecret : 'CLIENT_SECRET',
 		propertyName : 'googleToken',
-		scope : ['https://www.googleapis.com/auth/tasks', 'https://www.googleapis.com/auth/tasks.readonly']
+		scope : ['https://www.googleapis.com/auth/tasks', 'https://www.googleapis.com/auth/tasks.readonly'],
+		loginHint : 'someuser@gmail.com' 
 	});
 	//create some button
 	var sync = Ti.UI.createButton({
