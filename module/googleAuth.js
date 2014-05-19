@@ -27,7 +27,8 @@ var GoogleAuth = function(o) {
 		winTitle : (o.winTitle) ? o.winTitle : 'Google Account',
 		errorText : (o.errorText) ? o.errorText : 'Can not authorize user!',
 		winColor : (o.winColor) ? o.winColor : '#000',
-		quiet : ( typeof (o.quiet) === 'undefined') ? true : o.quiet
+		quiet : ( typeof (o.quiet) === 'undefined') ? true : o.quiet,
+		loginHint : o.loginHint  //this shows up as username on google login form
 	};
 	var log = function() {
 	};
@@ -237,7 +238,6 @@ var GoogleAuth = function(o) {
 			onerror : function(e) {
 				log.info(e.error);
 				log.info(e.responseText);
-				cbError();
 				//ERROR
 				Titanium.UI.createAlertDialog({
 					title : 'Error',
@@ -327,6 +327,9 @@ var GoogleAuth = function(o) {
 			scope[i] = encodeURIComponent(_opt.scope[i])
 		}
 		var url = _opt.url + '?' + 'approval_prompt=force&scope=' + scope.join('+') + '&' + 'redirect_uri=urn:ietf:wg:oauth:2.0:oob' + '&' + 'response_type=code' + '&' + 'client_id=' + _opt.clientId + '&' + 'btmpl=mobile' + '';
+		if (_opt.loginHint) {
+            url = url + '&' + 'login_hint=' + encodeURIComponent(_opt.loginHint);    
+        }
 		log.debug(url);
 		return url;
 	}
