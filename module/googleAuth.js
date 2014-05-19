@@ -243,7 +243,7 @@ var GoogleAuth = function(o) {
 					title : 'Error',
 					message : _opt.errorText
 				});
-				cbError();
+				
 				//authorize();
 
 			},
