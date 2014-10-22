@@ -1,0 +1,19 @@
+<Alloy>
+
+	<TabGroup>
+
+		<Menu id="menu" platform="android">
+            <!-- Cannot specify node text.  Use attributes only. -->
+            <MenuItem id="sync"   title="Sync"   onClick="menuItemSync_click" showAsAction="Ti.Android.SHOW_AS_ACTION_IF_ROOM" />
+            <MenuItem id="logout" title="Logout" onClick="menuItemLogout_click" showAsAction="Ti.Android.SHOW_AS_ACTION_IF_ROOM" />
+        </Menu>
+        
+		<Tab id="tab1" title="Google Tasks" icon="/images/259-list.png">
+			<Window id="win1" title="Google Tasks" backgroundColor="white" barColor="black">
+					<TableView id="table">  </TableView>
+			</Window>
+		</Tab>
+
+	</TabGroup>
+
+</Alloy>

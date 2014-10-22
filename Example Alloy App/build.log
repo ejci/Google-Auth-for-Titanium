@@ -1,0 +1,57 @@
+Logfile initialized
+[INFO] logfile = /home/fer/TitaniumStudio_Workspace/GoogleAuthAlloy/build.log
+[DEBUG] /home/fer/.titanium/mobilesdk/linux/3.2.1.GA/android/builder.py run /home/fer/TitaniumStudio_Workspace/GoogleAuthAlloy /opt/android
+[INFO] plugin=/home/fer/.titanium/plugins/ti.alloy/1.0/plugin.py
+[INFO] Detected compiler plugin: ti.alloy/1.0
+[DEBUG] Waiting for device to be ready ...
+[TRACE] adb devices returned 1 devices/emulators
+[TRACE] adb devices returned 1 devices/emulators
+[TRACE] adb devices returned 1 devices/emulators
+[TRACE] adb devices returned 1 devices/emulators
+[TRACE] adb devices returned 1 devices/emulators
+[TRACE] adb devices returned 1 devices/emulators
+[TRACE] adb devices returned 1 devices/emulators
+[TRACE] adb devices returned 1 devices/emulators
+[TRACE] adb devices returned 1 devices/emulators
+[TRACE] adb devices returned 1 devices/emulators
+[TRACE] adb devices returned 1 devices/emulators
+[TRACE] adb devices returned 1 devices/emulators
+[TRACE] adb devices returned 1 devices/emulators
+[TRACE] adb devices returned 1 devices/emulators
+[TRACE] adb devices returned 1 devices/emulators
+[TRACE] adb devices returned 1 devices/emulators
+[TRACE] adb devices returned 1 devices/emulators
+[TRACE] adb devices returned 1 devices/emulators
+[TRACE] adb devices returned 1 devices/emulators
+[TRACE] adb devices returned 1 devices/emulators
+[TRACE] adb devices returned 1 devices/emulators
+[TRACE] adb devices returned 1 devices/emulators
+[TRACE] adb devices returned 1 devices/emulators
+[TRACE] adb devices returned 1 devices/emulators
+[TRACE] adb devices returned 1 devices/emulators
+[TRACE] adb devices returned 1 devices/emulators
+[TRACE] adb devices returned 1 devices/emulators
+[TRACE] adb devices returned 1 devices/emulators
+[TRACE] adb devices returned 1 devices/emulators
+[TRACE] adb devices returned 1 devices/emulators
+[ERROR] Timed out waiting for emulator to be ready, you may need to close the emulator and try again
+[DEBUG] com.fabreti.googleauthalloy installed? True
+[INFO] Fastdev server running, deploying in Fastdev mode
+[INFO] Copying CommonJS modules...
+[INFO] Copying project resources..
+[INFO] Detected change in tiapp.xml, or assets deleted. Forcing full re-build...
+[TRACE] COPYING CREATED FILE: /home/fer/TitaniumStudio_Workspace/GoogleAuthAlloy/Resources/android/alloy.js => /home/fer/TitaniumStudio_Workspace/GoogleAuthAlloy/build/android/bin/assets/Resources/alloy.js
+[TRACE] COPYING CREATED FILE: /home/fer/TitaniumStudio_Workspace/GoogleAuthAlloy/Resources/android/MarketplaceArtwork.png => /home/fer/TitaniumStudio_Workspace/GoogleAuthAlloy/build/android/bin/assets/Resources/MarketplaceArtwork.png
+[ERROR] Exception occured while building Android project:
+[ERROR] Traceback (most recent call last):
+[ERROR]   File "/home/fer/.titanium/mobilesdk/linux/3.2.1.GA/android/builder.py", line 2550, in <module>
+[ERROR]     builder.build_and_run(False, avd_id)
+[ERROR]   File "/home/fer/.titanium/mobilesdk/linux/3.2.1.GA/android/builder.py", line 2245, in build_and_run
+[ERROR]     self.copy_project_resources()
+[ERROR]   File "/home/fer/.titanium/mobilesdk/linux/3.2.1.GA/android/builder.py", line 926, in copy_project_resources
+[ERROR]     shutil.copy(path, dest)
+[ERROR]   File "/usr/lib64/python2.7/shutil.py", line 119, in copy
+[ERROR]     copyfile(src, dst)
+[ERROR]   File "/usr/lib64/python2.7/shutil.py", line 69, in copyfile
+[ERROR]     raise Error("`%s` and `%s` are the same file" % (src, dst))
+[ERROR] Error: `/home/fer/TitaniumStudio_Workspace/GoogleAuthAlloy/Resources/android/MarketplaceArtwork.png` and `/home/fer/TitaniumStudio_Workspace/GoogleAuthAlloy/build/android/bin/assets/Resources/MarketplaceArtwork.png` are the same file
