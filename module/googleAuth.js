@@ -22,6 +22,7 @@ var GoogleAuth = function(o) {
 		clientSecret : (o.clientSecret) ? o.clientSecret : null,
 		propertyName : (o.propertyName) ? o.propertyName : 'googleToken',
 		url : 'https://accounts.google.com/o/oauth2/auth',
+        refreshUrl: 'https://www.googleapis.com/oauth2/v3/token',
 		scope : (o.scope) ? o.scope : ['https://www.googleapis.com/auth/tasks'],
 		closeTitle : (o.closeTitle) ? o.closeTitle : 'Close',
 		winTitle : (o.winTitle) ? o.winTitle : 'Google Account',
@@ -251,7 +252,7 @@ var GoogleAuth = function(o) {
 			timeout : 5000 /* in milliseconds */
 		});
 		// Prepare the connection.
-		xhr.open("POST", _opt.url);
+		xhr.open("POST", _opt.refreshUrl);
 		xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 		var d = {
 			client_id : _opt.clientId,
