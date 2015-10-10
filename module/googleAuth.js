@@ -306,12 +306,16 @@ var GoogleAuth = function(o) {
             timeout : 5000 /* in milliseconds */
         });
         // Prepare the connection.
-        xhr.open("POST", 'https://accounts.google.com/o/oauth2/token');
+        
+        xhr.open(
+            "POST", 
+            _opt.refreshUrl
+        );
+
         xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
         var d = {
             code : code,
             client_id : _opt.clientId,
-            client_secret : _opt.clientSecret,
             redirect_uri : 'urn:ietf:wg:oauth:2.0:oob',
             grant_type : 'authorization_code'
         };
