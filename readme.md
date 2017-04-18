@@ -5,11 +5,11 @@ Google Auth for Titanium is a module for Appcelerator Titanium. It allows to aut
 To understand how it works you must check [Google Accounts Authentication and Authorization docs](https://developers.google.com/accounts/docs/OAuth2InstalledApp).
 
 
-##Example Usage
+## Example Usage
 Check the example App to see it in action. It is pretty simple but you will need to get your CLIENT_ID and CLIENT_SECRET from [Google Api Console](https://code.google.com/apis/console/).
 If you don't now how to get CLIENT_ID or CLIENT_SECRET check this [guide](http://blog.ejci.net).
 
-###Titanium code:
+### Titanium code:
 	
 	:::javascript
 	//initialize module
@@ -38,13 +38,13 @@ If you don't now how to get CLIENT_ID or CLIENT_SECRET check this [guide](http:/
 	});
 
 
-###Titanium demo:
+### Titanium demo:
 ![Demo App][1]
 
 Author: [Miroslav Magda](http://ejci.net)
 Version 0.3.2
 
-##License
+## License
 All code is open source and dual licensed under GPL and MIT. Check the individual licenses for more information.
 
 
